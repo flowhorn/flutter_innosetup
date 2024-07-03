@@ -9,12 +9,16 @@ class InnoSetupApp {
   ///
   /// Refer [Version], [InnoSetupAppUrls] for more info.
   const InnoSetupApp({
+    this.id,
     required this.name,
     required this.executable,
     required this.version,
     required this.publisher,
     required this.urls,
   });
+
+  /// Id of the app. Id uniquely identifies this application.
+  final String? id;
 
   /// Name of the app.
   final String name;
@@ -37,6 +41,7 @@ class InnoSetupApp {
 
   @override
   String toString() => '''
+AppId="${id ?? ''}"
 AppName="$name"
 AppVersion="$version"
 $urls
