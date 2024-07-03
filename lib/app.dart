@@ -1,5 +1,10 @@
 import 'package:version/version.dart';
 
+enum WizardStyle {
+  classic,
+  modern,
+}
+
 /// Define Inno Setup for the Flutter project.
 class InnoSetupApp {
   /// Define Inno Setup for the Flutter project.
@@ -15,9 +20,12 @@ class InnoSetupApp {
     required this.version,
     required this.publisher,
     required this.urls,
+    this.wizardStyle = WizardStyle.classic,
   });
 
-  /// Id of the app. Id uniquely identifies this application.
+  /// Id of the app
+  ///
+  /// Id uniquely identifies this application.
   final String? id;
 
   /// Name of the app.
@@ -39,13 +47,19 @@ class InnoSetupApp {
   /// Refer [InnoSetupAppUrls] for more info.
   final InnoSetupAppUrls urls;
 
+  /// Wizard Style of installer and uninstaller
+  ///
+  /// If this directive is set to modern, Setup and Uninstall will show a more modern look.
+  final WizardStyle wizardStyle;
+
   @override
   String toString() => '''
-AppId="${id ?? ''}"
+AppId=${id ?? ''}
 AppName="$name"
 AppVersion="$version"
 $urls
 DefaultDirName="{autopf}\\$name"
+WizardStyle=${wizardStyle.name}
 ''';
 }
 
