@@ -41,6 +41,7 @@ AppName="$name"
 AppVersion="$version"
 $urls
 DefaultDirName="{autopf}\\$name"
+DefaultGroupName=$name
 ''';
 }
 
