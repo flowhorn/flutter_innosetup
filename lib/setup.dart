@@ -43,6 +43,7 @@ class InnoSetup {
   const InnoSetup({
     required this.icon,
     this.compression = InnoSetupCompressions.none,
+    this.privileges,
     this.languages,
     required this.name,
     required this.location,
@@ -61,6 +62,9 @@ class InnoSetup {
 
   /// Compresssion used to pack the contents in the installer.
   final InnoSetupCompression compression;
+
+  /// Define the installer's privilege requirement and override behaviors.
+  final InnoSetupPrivileges? privileges;
 
   /// Language support for the installer.
   final List<InnoSetupLanguage>? languages;
@@ -89,6 +93,7 @@ class InnoSetup {
 [Setup]
 $app
 $compression
+${privileges ?? ''}
 $icon
 $name
 $location
