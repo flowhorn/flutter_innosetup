@@ -1,7 +1,10 @@
 import 'package:version/version.dart';
 
-enum WizardStyle {
+// ignore: public_member_api_docs
+enum InnoSetupWizardStyle {
+  // ignore: public_member_api_docs
   classic,
+  // ignore: public_member_api_docs
   modern,
 }
 
@@ -20,7 +23,7 @@ class InnoSetupApp {
     required this.version,
     required this.publisher,
     required this.urls,
-    this.wizardStyle = WizardStyle.classic,
+    this.wizardStyle = InnoSetupWizardStyle.classic,
   });
 
   /// Id of the app
@@ -50,7 +53,7 @@ class InnoSetupApp {
   /// Wizard Style of installer and uninstaller
   ///
   /// If this directive is set to modern, Setup and Uninstall will show a more modern look.
-  final WizardStyle wizardStyle;
+  final InnoSetupWizardStyle wizardStyle;
 
   @override
   String toString() => '''
