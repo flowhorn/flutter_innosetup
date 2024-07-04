@@ -39,6 +39,7 @@ class InnoSetupApp {
   String toString() => '''
 AppName="$name"
 AppVersion="$version"
+AppPublisher="$publisher"
 $urls
 DefaultDirName="{autopf}\\$name"
 DefaultGroupName=$name
@@ -74,7 +75,6 @@ class InnoSetupAppUrls {
   // Use [homeUrl] as default url for optional urls.
   @override
   String toString() => '''
-AppPublisher="${homeUrl.path}"
 AppPublisherURL="${publisherUrl ?? homeUrl.path}"
 AppSupportURL="${updatesUrl ?? homeUrl.path}"
 AppUpdatesURL="${supportUrl ?? homeUrl.path}"
