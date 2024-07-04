@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:innosetup/desktopicon.dart';
 import 'package:innosetup/innosetup.dart';
 
 /// Define name of the installer.
@@ -48,6 +49,7 @@ class InnoSetup {
     this.license,
     required this.app,
     required this.files,
+    this.desktopIcon = false,
     this.runAfterInstall = true,
   });
 
@@ -75,6 +77,9 @@ class InnoSetup {
   /// Show license when installing.
   final InnoSetupLicense? license;
 
+  /// Asking create desktop icon or not
+  final bool desktopIcon;
+
   /// Run app after installing.
   final bool runAfterInstall;
 
@@ -91,6 +96,9 @@ ${license ?? ''}
 
 ${InnoSetupLanguagesBuilder(languages)}
 
+[Tasks]
+${desktopIcon ? const InnoSetupDesktopIconBuilder() : ''}
+
 $files
 
 ${InnoSetupIconsBuilder(app)}
@@ -99,7 +107,7 @@ ${runAfterInstall ? InnoSetupRunBuilder(app) : ''}
 ''');
 
     final buildDirectory = Directory("build");
-    
+
     if (!await buildDirectory.exists()) {
       await buildDirectory.create();
     }
