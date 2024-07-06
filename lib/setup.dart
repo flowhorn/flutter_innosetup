@@ -88,7 +88,7 @@ class InnoSetup {
   final bool runAfterInstall;
 
   /// Make the Inno Setup script. (innosetup.iss)
-  Future<void> make() async {
+  Future<void> make({bool dry = false}) async {
     final iss = StringBuffer('''
 [Setup]
 $app
@@ -119,10 +119,12 @@ ${runAfterInstall ? InnoSetupRunBuilder(app) : ''}
 
     File('build/innosetup.iss').writeAsStringSync('$iss');
 
-    await Process.start(
-      'iscc',
-      ['build/innosetup.iss'],
-      mode: ProcessStartMode.inheritStdio,
-    );
+    if (!dry) {
+      await Process.start(
+        'iscc',
+        ['build/innosetup.iss'],
+        mode: ProcessStartMode.inheritStdio,
+      );
+    }
   }
 }
